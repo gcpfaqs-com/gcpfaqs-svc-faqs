@@ -20,7 +20,7 @@ import (
 	"gorm.io/gorm"
 )
 
-const databaseDSNSecretID = "faqs-database-dsn"
+const databaseDSN = "faqs-database-dsn"
 
 func main() {
 	db, err := connectDatabase()
@@ -133,13 +133,13 @@ func readDatabaseDSNSecret(projectID string) (string, error) {
 	defer client.Close()
 
 	result, err := client.AccessSecretVersion(ctx, &secretmanagerpb.AccessSecretVersionRequest{
-		Name: fmt.Sprintf("projects/%s/secrets/%s/versions/latest", projectID, databaseDSNSecretID),
+		Name: fmt.Sprintf("projects/%s/secrets/%s/versions/latest", projectID, databaseDSN),
 	})
 	if status.Code(err) == codes.NotFound {
 		return "", nil
 	}
 	if err != nil {
-		return "", fmt.Errorf("access Secret Manager secret %q: %w", databaseDSNSecretID, err)
+		return "", fmt.Errorf("access Secret Manager secret %q: %w", databaseDSN, err)
 	}
 	if result == nil || result.GetPayload() == nil {
 		return "", nil
