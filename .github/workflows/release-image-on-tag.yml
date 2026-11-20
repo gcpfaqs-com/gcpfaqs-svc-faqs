@@ -82,7 +82,7 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}
           flavor: |
-            latest=never
+            latest=false
           tags: |
             type=raw,value=${{ github.ref_name }}
 
