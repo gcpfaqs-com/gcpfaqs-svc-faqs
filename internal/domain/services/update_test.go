@@ -17,7 +17,7 @@ var updatePoster string = "any valid poster"
 var updateTags []string = []string{"atag"}
 var updateVideoUrl string = "any valid url"
 var updateVideoId string = "43b14e10-e18a-4f88-9bcf-cd83698e5ba7"
-var updatePlaylistId string = "43b14e10-e18a-4f88-9bcf-cd83698e5ba7"
+var updateVideoPlaylistId string = "43b14e10-e18a-4f88-9bcf-cd83698e5ba7"
 
 func TestItShouldUpdateAResource(t *testing.T) {
 	repository := test.NewStubRepository()
@@ -30,7 +30,7 @@ func TestItShouldUpdateAResource(t *testing.T) {
 		updatePoster,
 		updateTags,
 		updateVideoUrl,
-		updatePlaylistId,
+		updateVideoPlaylistId,
 		updateVideoId)
 
 	assert.Nil(t, err)
@@ -49,7 +49,7 @@ func TestUpdateItShouldResultAnErrorOnInvalidTitle(t *testing.T) {
 		updatePoster,
 		updateTags,
 		updateVideoUrl,
-		updatePlaylistId,
+		updateVideoPlaylistId,
 		updateVideoId)
 
 	assert.NotNil(t, err)
@@ -68,7 +68,7 @@ func TestUpdateItShouldResultAnErrorOnInvalidContent(t *testing.T) {
 		updatePoster,
 		updateTags,
 		updateVideoUrl,
-		updatePlaylistId,
+		updateVideoPlaylistId,
 		updateVideoId)
 
 	assert.NotNil(t, err)
@@ -87,7 +87,7 @@ func TestUpdateItShouldResultAnErrorOnInvalidPoster(t *testing.T) {
 		updatePoster,
 		updateTags,
 		updateVideoUrl,
-		updatePlaylistId,
+		updateVideoPlaylistId,
 		updateVideoId)
 
 	assert.NotNil(t, err)
@@ -105,7 +105,7 @@ func TestUpdateItShouldResultAnErrorOnInvalidTags(t *testing.T) {
 		updatePoster,
 		updateTags,
 		updateVideoUrl,
-		updatePlaylistId,
+		updateVideoPlaylistId,
 		updateVideoId)
 
 	assert.NotNil(t, err)
@@ -124,7 +124,7 @@ func TestUpdateItShouldResultAnErrorOnInvalidVideoUrl(t *testing.T) {
 		updatePoster,
 		updateTags,
 		updateVideoUrl,
-		updatePlaylistId,
+		updateVideoPlaylistId,
 		updateVideoId)
 
 	assert.NotNil(t, err)
@@ -143,7 +143,7 @@ func TestUpdateItShouldResultAnErrorOnInvalidVideoId(t *testing.T) {
 		updatePoster,
 		updateTags,
 		updateVideoUrl,
-		updatePlaylistId,
+		updateVideoPlaylistId,
 		updateVideoId)
 
 	assert.NotNil(t, err)
@@ -151,7 +151,7 @@ func TestUpdateItShouldResultAnErrorOnInvalidVideoId(t *testing.T) {
 }
 
 func TestUpdateItShouldResultAnErrorOnInvalidVideoPlaylistId(t *testing.T) {
-	updatePlaylistId = ""
+	updateVideoPlaylistId = ""
 	repository := test.NewStubRepository()
 
 	sut := services.NewUpdateFaqUseCase(repository)
@@ -162,7 +162,7 @@ func TestUpdateItShouldResultAnErrorOnInvalidVideoPlaylistId(t *testing.T) {
 		updatePoster,
 		updateTags,
 		updateVideoUrl,
-		updatePlaylistId,
+		updateVideoPlaylistId,
 		updateVideoId)
 
 	assert.NotNil(t, err)
