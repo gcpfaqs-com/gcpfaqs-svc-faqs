@@ -1,4 +1,4 @@
-package application
+package services
 
 import (
 	"gcpfaqs-svc-faqs/internal/domain/models"
@@ -14,7 +14,7 @@ func NewGetFaqUseCase(repo persistence.FaqRepository) *GetFaqUseCase {
 	return &GetFaqUseCase{repository: repo}
 }
 
-func (uc *GetFaqUseCase) Get(id string) (*models.Faq, error) {
+func (uc *GetFaqUseCase) Do(id string) (*models.Faq, error) {
 	validID, err := types.NewIDFromString(id)
 	if err != nil {
 		return nil, err

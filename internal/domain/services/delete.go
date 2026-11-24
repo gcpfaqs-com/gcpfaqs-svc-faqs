@@ -1,4 +1,4 @@
-package application
+package services
 
 import (
 	"gcpfaqs-svc-faqs/internal/domain/persistence"
@@ -13,7 +13,7 @@ func NewDeleteFaqUseCase(repo persistence.FaqRepository) *DeleteFaqUseCase {
 	return &DeleteFaqUseCase{repository: repo}
 }
 
-func (uc *DeleteFaqUseCase) Delete(id string) error {
+func (uc *DeleteFaqUseCase) Do(id string) error {
 	validID, err := types.NewIDFromString(id)
 	if err != nil {
 		return err

@@ -2,8 +2,8 @@ package rest
 
 import (
 	"encoding/json"
-	"gcpfaqs-svc-faqs/internal/application"
 	"gcpfaqs-svc-faqs/internal/domain/persistence"
+	"gcpfaqs-svc-faqs/internal/domain/services"
 	"net/http"
 )
 
@@ -24,8 +24,8 @@ func (uc *RESTSaveUseCase) Save(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	saveUC := application.NewSaveFaqUseCase(uc.repository)
-	id, err := saveUC.Save(dto.Title, dto.Content, dto.Poster, dto.Tags, dto.VideoURL, dto.VideoPlaylistID, dto.YoutubeID)
+	saveUC := services.NewSaveFaqUseCase(uc.repository)
+	id, err := saveUC.Do(dto.Title, dto.Content, dto.Poster, dto.Tags, dto.VideoURL, dto.VideoPlaylistID, dto.YoutubeID)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return

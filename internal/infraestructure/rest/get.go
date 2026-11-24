@@ -2,8 +2,8 @@ package rest
 
 import (
 	"encoding/json"
-	"gcpfaqs-svc-faqs/internal/application"
 	"gcpfaqs-svc-faqs/internal/domain/persistence"
+	"gcpfaqs-svc-faqs/internal/domain/services"
 	"net/http"
 )
 
@@ -20,8 +20,8 @@ func NewRESTGetUseCase(repository persistence.FaqRepository) *RESTGetUseCase {
 func (uc *RESTGetUseCase) Get(w http.ResponseWriter, r *http.Request) {
 	idStr := r.PathValue("id")
 
-	getUC := application.NewGetFaqUseCase(uc.repository)
-	faq, err := getUC.Get(idStr)
+	getUC := services.NewGetFaqUseCase(uc.repository)
+	faq, err := getUC.Do(idStr)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return

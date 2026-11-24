@@ -1,4 +1,4 @@
-package application
+package services
 
 import (
 	"gcpfaqs-svc-faqs/internal/domain/persistence"
@@ -15,7 +15,7 @@ func NewUpdateFaqUseCase(repo persistence.FaqRepository) *UpdateFaqUseCase {
 
 }
 
-func (uc *UpdateFaqUseCase) Update(id, title, content, poster string, tags []string, videoURL, videoPlaylistID, youtubeID string) error {
+func (uc *UpdateFaqUseCase) Do(id, title, content, poster string, tags []string, videoURL, videoPlaylistID, youtubeID string) error {
 	validID, err := types.NewIDFromString(id)
 	if err != nil {
 		return err

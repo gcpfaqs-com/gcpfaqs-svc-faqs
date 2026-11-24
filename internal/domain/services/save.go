@@ -1,4 +1,4 @@
-package application
+package services
 
 import (
 	"gcpfaqs-svc-faqs/internal/domain/models"
@@ -15,7 +15,7 @@ func NewSaveFaqUseCase(repo persistence.FaqRepository) *SaveFaqUseCase {
 
 }
 
-func (uc *SaveFaqUseCase) Save(title, content, poster string, tags []string, videoURL, videoPlaylistID string, youtubeID string) (string, error) {
+func (uc *SaveFaqUseCase) Do(title, content, poster string, tags []string, videoURL, videoPlaylistID string, youtubeID string) (string, error) {
 	faq, err := models.NewFaq(title, content, poster, tags, videoURL, videoPlaylistID, youtubeID)
 	if err != nil {
 		return "", err

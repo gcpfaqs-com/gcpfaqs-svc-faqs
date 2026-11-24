@@ -1,8 +1,8 @@
 package rest
 
 import (
-	"gcpfaqs-svc-faqs/internal/application"
 	"gcpfaqs-svc-faqs/internal/domain/persistence"
+	"gcpfaqs-svc-faqs/internal/domain/services"
 	"net/http"
 )
 
@@ -19,12 +19,11 @@ func NewRESTDeleteUseCase(repository persistence.FaqRepository) *RESTDeleteUseCa
 func (uc *RESTDeleteUseCase) Delete(w http.ResponseWriter, r *http.Request) {
 	idStr := r.PathValue("id")
 
-	deleteUC := application.NewDeleteFaqUseCase(uc.repository)
-	if err := deleteUC.Delete(idStr); err != nil {
+	deleteUC := services.NewDeleteFaqUseCase(uc.repository)
+	if err := deleteUC.Do(idStr); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	w.WriteHeader(http.StatusNoContent)
-
 }
